@@ -1,0 +1,83 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#0d0b0c">
+  <title>Mafia</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/style.css">
+</head>
+<body class="phase-lobby">
+  <div id="sky"></div>
+
+  <!-- Home -->
+  <main id="home" class="screen">
+    <div class="home-card">
+      <h1 class="logo">MAFIA</h1>
+      <p class="tagline">Trust no one. Not even your friends.</p>
+      <label class="field">
+        <span>Your nickname</span>
+        <input id="nameInput" maxlength="16" autocomplete="nickname" placeholder="e.g. Vito">
+      </label>
+      <button id="createBtn" class="btn primary">Create a room</button>
+      <div class="or"><span>or join one</span></div>
+      <div class="join-row">
+        <input id="codeInput" maxlength="5" placeholder="CODE" autocapitalize="characters" autocomplete="off">
+        <button id="joinBtn" class="btn">Join</button>
+      </div>
+      <button id="rejoinBtn" class="btn ghost hidden"></button>
+      <p id="homeError" class="error"></p>
+    </div>
+  </main>
+
+  <!-- Room (lobby + game + end) -->
+  <main id="room" class="screen hidden">
+    <header class="topbar">
+      <div class="brand">MAFIA</div>
+      <div class="phase-info">
+        <div id="phaseLabel" class="phase-label">Lobby</div>
+        <div id="timer" class="timer"></div>
+      </div>
+      <div class="top-actions">
+        <button id="muteBtn" class="icon-btn" title="Sound on/off">🔊</button>
+        <button id="leaveBtn" class="icon-btn" title="Leave room">✕</button>
+      </div>
+    </header>
+
+    <div class="layout">
+      <section class="main-col">
+        <div id="lobbyView"></div>
+        <div id="gameView" class="hidden">
+          <div id="myRole" class="my-role"></div>
+          <div id="actionPanel" class="panel"></div>
+          <div class="panel">
+            <h3>Players</h3>
+            <div id="playerGrid" class="player-grid"></div>
+          </div>
+          <div id="notesPanel" class="panel"></div>
+        </div>
+        <div id="endView" class="hidden"></div>
+      </section>
+
+      <section class="chat-col panel">
+        <div id="chatTabs" class="chat-tabs"></div>
+        <div id="chatLog" class="chat-log"></div>
+        <form id="chatForm" class="chat-form">
+          <input id="chatInput" maxlength="400" autocomplete="off" placeholder="Say something…">
+          <button class="btn primary" type="submit">Send</button>
+        </form>
+      </section>
+    </div>
+  </main>
+
+  <div id="overlay" class="overlay hidden"></div>
+  <div id="toast" class="toast hidden"></div>
+
+  <script src="/socket.io/socket.io.js"></script>
+  <script src="/sound.js"></script>
+  <script src="/app.js"></script>
+</body>
+</html>
